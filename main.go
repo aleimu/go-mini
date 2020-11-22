@@ -1,15 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2020-11-19 23:14:23
- * @LastEditTime: 2020-11-19 23:29:13
- * @LastEditors: your name
+ * @LastEditTime: 2020-11-22 16:49:23
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \go-mini\main.go
  */
 package main
 
 import (
-	"go-mini/conf"
 	"go-mini/middleware"
 	"go-mini/server"
 	"go-mini/util"
@@ -39,7 +38,7 @@ func NewApp() *gin.Engine {
 func NewRouter() *gin.Engine {
 	r := NewApp()
 	// 自测分组,尝试新姿势
-	v0 := r.Group("v1/test")
+	v0 := r.Group("v1")
 	{
 		// 服务内部的重定向
 		v0.GET("/test", func(c *gin.Context) {
@@ -95,11 +94,11 @@ func NewRouter() *gin.Engine {
 		// 	v1.DELETE("/logout", server.UserLogout)
 		// }
 	}
-	// 广告管理路由
-	v2 := r.Group("/v1")
+	// 测试
+	v2 := r.Group("/test")
 	{
-		// 上传图片
 		v2.GET("/groups", server.GetGroups)
+		v2.GET("/ping", server.Ping)
 	}
 	return r
 }
@@ -111,7 +110,6 @@ func go404(c *gin.Context) {
 
 func main() {
 	// 从配置文件读取配置
-	conf.Init()
 	// 装载路由
 	r := NewRouter()
 

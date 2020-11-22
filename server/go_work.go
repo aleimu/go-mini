@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-11-19 23:14:23
- * @LastEditTime: 2020-11-19 23:29:52
+ * @LastEditTime: 2020-11-22 12:41:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \go-mini\server\go_work.go
@@ -31,11 +31,6 @@ type Data struct {
 	C []string `json:"c"`
 	D mmp      `json:"d"`
 	e *mmp     `json:"e"` //小写是不会被导出的
-}
-
-// Ping 状态检查页面
-func Ping(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"code": util.OK, "data": nil})
 }
 
 func GetGroups(c *gin.Context) {
