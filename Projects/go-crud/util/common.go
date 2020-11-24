@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-11-22 12:41:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \go-mini\util\common.go
+ * @FilePath: \go-crud\util\common.go
  */
 package util
 

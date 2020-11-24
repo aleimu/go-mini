@@ -7,8 +7,8 @@
 package server
 
 import (
-	"go-mini/util"
-	"go-mini/util/db"
+	"go-crud/util"
+	"go-crud/util/db"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

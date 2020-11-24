@@ -4,13 +4,13 @@
  * @LastEditTime: 2020-11-22 12:41:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \go-mini\server\go_work.go
+ * @FilePath: \go-crud\server\go_work.go
  */
 
 package server
 
 import (
-	"go-mini/util"
+	"go-crud/util"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

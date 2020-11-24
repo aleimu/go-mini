@@ -4,7 +4,7 @@
  * @LastEditTime: 2020-11-22 15:42:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \go-mini\conf\conf.go
+ * @FilePath: \go-crud\conf\conf.go
  */
 
 package conf

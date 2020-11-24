@@ -4,14 +4,14 @@
  * @LastEditTime: 2020-11-19 23:30:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \go-mini\middleware\before.go
+ * @FilePath: \go-crud\middleware\before.go
  */
 
 package middleware
 
 import (
 	"fmt"
-	"go-mini/util"
+	"go-crud/util"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

@@ -2,7 +2,7 @@ package util
 
 import (
 	"fmt"
-	"go-mini/conf"
+	"go-crud/conf"
 	"io"
 	"os"
 	"path"

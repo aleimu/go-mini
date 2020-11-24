@@ -1,17 +1,17 @@
 /*
  * @Author: your name
  * @Date: 2020-11-19 23:14:23
- * @LastEditTime: 2020-11-22 16:49:23
+ * @LastEditTime: 2020-11-24 21:33:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \go-mini\main.go
+ * @FilePath: \go-crud\main.go
  */
 package main
 
 import (
-	"go-mini/middleware"
-	"go-mini/server"
-	"go-mini/util"
+	"go-crud/middleware"
+	"go-crud/server"
+	"go-crud/util"
 	"net/http"
 	"time"
 

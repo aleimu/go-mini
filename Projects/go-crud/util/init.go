@@ -6,9 +6,9 @@
 package util
 
 import (
-	_ "go-mini/conf"
-	"go-mini/util/cache"
-	"go-mini/util/db"
+	_ "go-crud/conf"
+	"go-crud/util/cache"
+	"go-crud/util/db"
 	"os"
 	"strconv"
 
