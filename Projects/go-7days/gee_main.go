@@ -9,13 +9,23 @@ package main
 import (
 	"go-7days/gee"
 	"net/http"
+	"time"
 )
 
 func main() {
-	r := gee.New()
+	r := gee.Default()
+	r.LoadHTMLGlob("templates/*")
+	r.Static("/assets", "./static")
 
 	r.GET("/", func(c *gee.Context) {
-		c.HTML(http.StatusOK, "<h1>Hello Gee</h1>")
+		c.Template(http.StatusOK, "css.tmpl", nil)
+	})
+
+	r.GET("/date", func(c *gee.Context) {
+		c.Template(http.StatusOK, "custom_func.tmpl", gee.H{
+			"title": "gee",
+			"now":   time.Date(2019, 8, 17, 0, 0, 0, 0, time.UTC),
+		})
 	})
 
 	r.GET("/hello", func(c *gee.Context) {
@@ -68,6 +78,6 @@ func main() {
 		})
 
 	}
-
+	r.Static("/logs", "/static")
 	r.Run(":3002")
 }
