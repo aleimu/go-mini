@@ -1,0 +1,22 @@
+info(
+	title: // TODO: add title
+	desc: // TODO: add description
+	author: "liuguojin"
+	email: "01551462@yto.net.cn"
+)
+
+type request struct {
+	// TODO: add members here and delete this comment
+}
+
+type response struct {
+	// TODO: add members here and delete this comment
+}
+
+service greet2-api {
+	@handler // TODO: set handler name and delete this comment
+	get /users/id/:userId(request) returns(response)
+
+	@handler // TODO: set handler name and delete this comment
+	post /users/create(request)
+}

@@ -63,6 +63,9 @@ func main() {
 			// expect /hello?name=geektutu
 			c.String(http.StatusOK, "hello %s, you're at %s\n", c.Query("name"), c.Path)
 		})
+		v1.GET("/a/*/b/*", func(c *gee.Context) {
+			c.HTML(http.StatusOK, "<h1>Hello Gee</h1>")
+		})
 	}
 	v2 := r.Group("/v2")
 	{

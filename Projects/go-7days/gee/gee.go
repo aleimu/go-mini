@@ -129,6 +129,8 @@ func (group *RouterGroup) Use(middlewares ...HandlerFunc) {
 	group.middlewares = append(group.middlewares, middlewares...)
 }
 
+// 实现ServeHTTP方法,满足http.Handler接口,原本http.HandleFunc 实现了路由和Handler的映射,但是在实现Engine之后，我们拦截了所有的HTTP请求，拥有了统一的控制入口。
+// 在这里我们可以自由定义路由映射的规则，也可以统一添加一些处理逻辑，例如日志、异常处理等。
 func (engine *Engine) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var middlewares []HandlerFunc
 	for _, group := range engine.groups {

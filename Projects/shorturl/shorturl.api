@@ -1,0 +1,31 @@
+type (
+	shortenReq struct {
+		url string `form:"url"`
+	}
+
+	shortenResp struct {
+		shortUrl string `json:"shortUrl"`
+	}
+)
+
+type (
+	expandReq struct {
+		key string `form:"key"`
+	}
+
+	expandResp struct {
+		url string `json:"url"`
+	}
+)
+
+service shorturl-api {
+	@server(
+		handler: ShortenHandler
+	)
+	get /shorten(shortenReq) returns(shortenResp)
+	
+	@server(
+		handler: ExpandHandler
+	)
+	get /expand(expandReq) returns(expandResp)
+}
