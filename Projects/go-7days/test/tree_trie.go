@@ -1,7 +1,7 @@
 /*
  * @Author: aleimu
  * @Date: 2020-12-03 13:31:18
- * @Description: file content
+ * @Description: 前缀字典的实现,字符串的后一个字母组成字典是前一个字母的value,形如{a:{b:{c:{d:{e:...}}}}}
  */
 
 package main
@@ -29,18 +29,25 @@ func (this *Trie) Insert(word string) {
 	root := this
 	for _, v := range word {
 		value, ok := root.subTrie[string(v)]
+		// 检查单词在当前深度的嵌套字典中是否已经存在,
+		// 第一次插入时肯定时不存在的
+		// 之后的插入会有用到,判断分支
+		fmt.Println("root:", root, "v:", "sub:", root.subTrie, v, "value", value, "ok:", ok)
 		if ok {
 			root = value
 		} else {
+			// 初始化前缀字典
 			newNode := make(map[string]*Trie, 0)
 			root.subTrie[string(v)] = &Trie{
 				name:    string(v),
 				subTrie: newNode,
 				isWord:  false,
 			}
+			// 交换root,形成嵌套
 			root = root.subTrie[string(v)]
 		}
 	}
+	// 一个字符串遍历完成,设定到此
 	root.isWord = true
 }
 
@@ -92,20 +99,14 @@ func (this *Trie) match(re string) bool {
 func main() {
 
 	obj := Constructor()
-	word := "abcdef"
+	word := "abcdeffff"
 	obj.Insert(word)
-	p1 := obj.Search(word)
-	fmt.Println(p1)
-	p2 := obj.StartsWith("abcd")
-	fmt.Println(p2)
-	p3 := obj.StartsWith("abcdf")
-	fmt.Println(p3)
+	fmt.Println("obj:", obj, "obj.sub:", obj.subTrie)
+	// p1 := obj.Search(word)
+	// fmt.Println(p1)
+	// p2 := obj.StartsWith("abcd")
+	// fmt.Println(p2)
+	// p3 := obj.StartsWith("abcdf")
+	// fmt.Println(p3)
 
 }
-
-/*
-作者：user4484c
-链接：https://leetcode-cn.com/problems/implement-trie-prefix-tree/solution/golangqian-zhui-shu-ti-jie-si-lu-by-user4484c/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-*/

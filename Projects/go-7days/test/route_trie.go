@@ -9,6 +9,8 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 // 二叉树节点类型
@@ -91,12 +93,6 @@ func parsePattern(pattern string) []string {
 	return parts
 }
 
-func (n *node) printNode() {
-	if n != nil {
-		fmt.Println("node:", n)
-	}
-}
-
 // 打印节点树
 func (n *node) showNode() {
 
@@ -123,33 +119,44 @@ func (n *node) match(url string) bool {
 
 }
 
+// deep pretty
+func (n *node) spew() {
+	scs := spew.ConfigState{Indent: "\t"}
+	scs.Dump(n)
+	// spew.Printf("ppui8: %v\t", n1)
+}
+
 func main() {
 	//make用于内建类型（map、slice 和channel）的内存分配
 	//new用于各种类型的内存分配。
 	n1 := new(node)
 	// n2 := &node{}
-	fmt.Println(n1)
 	url := []string{"/v1/a/1", "/v1/a/2", "/v1/b/1", "/v1/b/2", "/v2/c", "/v3/*", "/v4/*/1", "/v5/*/a/b/*"}
 	for _, v := range url {
 		tmp := parsePattern(v)
 		n1.insert(v, tmp, 0)
 	}
+
 	fmt.Println("---------------------------")
-	n1.printNode()
+	n1.spew()
 	fmt.Println("---------------------------")
 	n1.showNode()
-	n1.match("/v1/a/1")
-	n1.match("/v1/b/4")
-	n1.match("/v1/12/")
+	fmt.Println("---------------------------")
 
-	n1.match("/v3/12/")
-	n1.match("/v3/12/1")
+	n1.match("/v1/a/1") // match success &{/v1/a/1 1 [] false}
+	n1.match("/v1/b/4") // match failed <nil>
+	n1.match("/v1/12/") // match failed <nil>
 
-	n1.match("/v4/12/1")
-	n1.match("/v4/12/2")
+	n1.match("/v3/12/")  //success
+	n1.match("/v3/12/1") //success
 
-	n1.match("/v5/12/a/b/8")
-	n1.match("/v5/12/c/b/8")
+	n1.match("/v4/12/1") // match success &{/v4/*/1 * [] true}
+	n1.match("/v4/12")   // match success &{/v4/*/1 * [] true}
+
+	n1.match("/v5/12/a/b/8") // match success &{/v5/*/a/b/* * [] true}
+	n1.match("/v5/12/c/b/8") // true 匹配效果并不理想
+	fmt.Println("---------------------------")
+
 }
 
 /*
